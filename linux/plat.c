@@ -147,8 +147,8 @@ void *plat_mmap(unsigned long addr, size_t size, int need_exec, int is_fixed)
 		prot |= PROT_EXEC;
 	if (is_fixed)
 		flags |= MAP_FIXED;
-	if (size >= HUGETLB_THRESHOLD && !hugetlb_disabled)
-		flags |= MAP_HUGETLB;
+	//if (size >= HUGETLB_THRESHOLD && !hugetlb_disabled)
+		//flags |= MAP_HUGETLB;
 
 	ret = mmap(req, size, prot, flags, -1, 0);
 	if (ret == MAP_FAILED && (flags & MAP_HUGETLB)) {
@@ -171,6 +171,7 @@ void *plat_mmap(unsigned long addr, size_t size, int need_exec, int is_fixed)
 
 void *plat_mremap(void *ptr, size_t oldsize, size_t newsize)
 {
+	/*
 	void *ret;
 
 	ret = mremap(ptr, oldsize, newsize, MREMAP_MAYMOVE);
@@ -180,6 +181,7 @@ void *plat_mremap(void *ptr, size_t oldsize, size_t newsize)
 		printf("warning: mremap moved: %p -> %p\n", ptr, ret);
 
 	return ret;
+	*/
 }
 
 void plat_munmap(void *ptr, size_t size)
